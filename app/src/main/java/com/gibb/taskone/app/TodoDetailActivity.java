@@ -13,43 +13,67 @@ import android.widget.Toast;
 import com.gibb.taskone.app.contentprovider.MyTodoContentProvider;
 import com.gibb.taskone.app.database.TodoTable;
 
-/*
- * TodoDetailActivity allows to enter a new todo item 
- * or to change an existing
+
+/***
+ * Die Aktivität TodoDetailActivity erlaubt die Eingabe neuer Tasks oder das Ändern von bestehenden Tasks
  */
 public class TodoDetailActivity extends Activity {
+    /***
+     * Spinner: Dropdown-Element zur Auswahl der Kategorie
+     * EditText: Texteingabefelder für Titel und Inhalt
+     * todoUri: Uri-Objekt (wird verwendet für ContentProvider)
+     */
     private Spinner mCategory;
     private EditText mTitleText;
     private EditText mBodyText;
-
     private Uri todoUri;
 
+    /***
+     *
+     * @param bundle Map von String-Werten
+     *               Übergibt die Parameter bei Erstellung an die Superklasse (Activity)
+     *               --> erstellt das Activity-Fenster (setContentView)
+     *
+     */
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.todo_edit);
 
+        /***
+         * Übernehmen der Layout-Elemente (byID)
+         */
         mCategory = (Spinner) findViewById(R.id.category);
         mTitleText = (EditText) findViewById(R.id.todo_edit_summary);
         mBodyText = (EditText) findViewById(R.id.todo_edit_description);
         Button confirmButton = (Button) findViewById(R.id.todo_edit_button);
 
+        /***
+         * Zusatzinformationen des Intent auslesen
+         */
         Bundle extras = getIntent().getExtras();
 
-        // check from the saved Instance
+        /***
+         * Falls bundle nicht leer: Übernehmen der URI aus der Klasse MyTodoContentProvider
+         */
         todoUri = (bundle == null) ? null : (Uri) bundle
                 .getParcelable(MyTodoContentProvider.CONTENT_ITEM_TYPE);
 
         // Or passed from the other activity
+        /***
+         * Oder Übernehmen der Uri aus dem extras-Bundle falls dieses nicht leer ist (--> aus der anderen Activity)
+         */
         if (extras != null) {
             todoUri = extras
                     .getParcelable(MyTodoContentProvider.CONTENT_ITEM_TYPE);
-
             fillData(todoUri);
         }
-
+        /***
+         * onClick-EventListener auf dem confirm-Button setzen
+         */
         confirmButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+                //Falls kein Inhalt vorhanden: Benachrichtigung
                 if (TextUtils.isEmpty(mTitleText.getText().toString())) {
                     makeToast();
                 } else {
@@ -61,6 +85,10 @@ public class TodoDetailActivity extends Activity {
         });
     }
 
+    /***
+     *
+     * @param uri
+     */
     private void fillData(Uri uri) {
         String[] projection = { TodoTable.COLUMN_SUMMARY,
                 TodoTable.COLUMN_DESCRIPTION, TodoTable.COLUMN_CATEGORY };

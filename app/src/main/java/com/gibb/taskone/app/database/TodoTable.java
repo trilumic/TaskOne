@@ -8,14 +8,21 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 public class TodoTable {
-    // Database table
+
+
+    /***
+     * Konstanten zurm Erstellung der Tabelle(n)
+     */
     public static final String TABLE_TODO = "todo";
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_CATEGORY = "category";
     public static final String COLUMN_SUMMARY = "summary";
     public static final String COLUMN_DESCRIPTION = "description";
 
-    // Database creation SQL statement
+
+    /***
+     * SQL-Statement zur Tabellenerzeugung
+     */
     private static final String DATABASE_CREATE = "create table "
             + TABLE_TODO
             + "("
@@ -26,10 +33,22 @@ public class TodoTable {
             + " text not null"
             + ");";
 
+    //
+    /***
+     * onCreate() und onUpdate(): Zu implementierende Methoden der SQLiteDatabase-Klasse
+     * onCreate(): Erstellt Tabelle(n)
+     * @param database Datenbank, in der die Tabelle erstellt werden soll (Ziel für execSQL())
+     */
     public static void onCreate(SQLiteDatabase database) {
         database.execSQL(DATABASE_CREATE);
     }
 
+    /***
+     * Upgrade der DB
+     * @param database Ziel-DB
+     * @param oldVersion Alte Versionsnummer
+     * @param newVersion Neue Versionsnummer
+     */
     public static void onUpgrade(SQLiteDatabase database, int oldVersion,
                                  int newVersion) {
         Log.w(TodoTable.class.getName(), "Upgrading database from version "
