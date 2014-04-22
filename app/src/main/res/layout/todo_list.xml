@@ -2,18 +2,38 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="#080a0a">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Archive"
+        android:id="@+id/todo_archive_button"
+        android:background="#00ad8e"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        android:textColor="#ffffff" />
 
     <ListView
         android:id="@android:id/list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#080a0a"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="50dp"
+        android:layout_marginRight="10dp">
     </ListView>
 
     <TextView
         android:id="@android:id/empty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/no_todos" />
+        android:text="@string/no_todos"
+        android:typeface="monospace"
+        android:background="#080a0a"
+        android:autoText="false"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp" />
 
-</LinearLayout> 
+</LinearLayout>

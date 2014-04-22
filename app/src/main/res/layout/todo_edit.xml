@@ -2,13 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="#080a0a"
+    android:textColor="#BDBDBD">
 
     <Spinner
         android:id="@+id/category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:entries="@array/priorities" >
+        android:entries="@array/priorities"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:textColor="#BDBDBD"
+        android:textSize="18dp"
+        android:typeface="monospace">
     </Spinner>
 
     <LinearLayout
@@ -22,7 +29,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="@string/todo_edit_summary"
-            android:imeOptions="actionNext" >
+            android:imeOptions="actionNext"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:textColor="#FFFFFF"
+            android:typeface="monospace"
+            android:textSize="18dp">
         </EditText>
     </LinearLayout>
 
@@ -30,17 +42,27 @@
         android:id="@+id/todo_edit_description"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:textColor="#BDBDBD"
         android:layout_weight="1"
         android:gravity="top"
         android:hint="@string/todo_edit_description"
-        android:imeOptions="actionNext" >
+        android:imeOptions="actionNext"
+        android:typeface="monospace"
+        android:textSize="18dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp">
     </EditText>
 
     <Button
         android:id="@+id/todo_edit_button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/todo_edit_confirm" >
+        android:text="@string/todo_edit_confirm"
+        android:layout_gravity="center_horizontal"
+        android:background="#00ad8e"
+        android:textColor="#FFFFFF"
+        android:textSize="24dp"
+        android:typeface="monospace">
     </Button>
 
 </LinearLayout> 
