@@ -6,10 +6,10 @@
     android:background="#080a0a">
 
     <Button
+        android:id="@+id/todo_archive_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Archive"
-        android:id="@+id/todo_archive_button"
+        android:text="Delete All"
         android:background="#00ad8e"
         android:textStyle="bold"
         android:typeface="monospace"

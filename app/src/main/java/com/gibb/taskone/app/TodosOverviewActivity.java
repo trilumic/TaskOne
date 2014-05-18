@@ -14,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import com.gibb.taskone.app.contentprovider.MyTodoContentProvider;
@@ -29,8 +30,8 @@ import com.gibb.taskone.app.database.TodoTable;
 
 public class TodosOverviewActivity extends ListActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
-    private static final int ACTIVITY_CREATE = 0;
-    private static final int ACTIVITY_EDIT = 1;
+//    private static final int ACTIVITY_CREATE = 0;
+//    private static final int ACTIVITY_EDIT = 1;
     private static final int DELETE_ID = Menu.FIRST + 1;
     // private Cursor cursor;
     private SimpleCursorAdapter adapter;
@@ -45,7 +46,18 @@ public class TodosOverviewActivity extends ListActivity implements
         this.getListView().setDividerHeight(2);
         fillData();
         registerForContextMenu(getListView());
+
+        Button clickButton = (Button) findViewById(R.id.todo_archive_button);
+        clickButton.setOnClickListener( new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                getContentResolver().delete(MyTodoContentProvider.CONTENT_URI,null,null);
+            }
+        });
     }
+
+
 
     // create the menu based on the XML defintion
     @Override
@@ -85,6 +97,7 @@ public class TodosOverviewActivity extends ListActivity implements
         Intent i = new Intent(this, TodoDetailActivity.class);
         startActivity(i);
     }
+
 
     // Opens the second activity if an entry is clicked
     @Override
